@@ -1,5 +1,0 @@
-Dataset: UpdatedResumeDataSet
-Source: https://www.kaggle.com/datasets/gauravduttakiit/resume-dataset
-File: UpdatedResumeDataSet.csv
-
-Download and place in: data/UpdatedResumeDataSet.csv

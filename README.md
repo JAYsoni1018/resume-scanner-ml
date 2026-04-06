@@ -16,11 +16,16 @@ A full-stack ML project that predicts job role categories from uploaded resumes 
 project-name/
 ├── README.md
 ├── requirements.txt
+├── app.py
+├── train.py
+├── streamlit_app.py
 ├── Dockerfile
 ├── config.yaml
+├── .env
+├── .gitignore
 ├── data/
 │   ├── README.md
-│   └── dataset_link.txt
+│   └── processed_resume_dataset.txt
 ├── src/
 │   ├── data_loader.py
 │   ├── preprocess.py
@@ -34,8 +39,7 @@ project-name/
 │   └── model_v1.pkl
 |    └── feature_artifacts.pkl
 ├── app/
-│   ├── app.py
-│   └── schema.py
+│    └── schema.py
 ├── logs/
 │   └── app.log
 └── notebooks/
@@ -46,13 +50,13 @@ project-name/
 ### 1. Train the model
 
 ```bash
-python src/train.py
+python train.py
 ```
 
 ### 2. Start Flask API
 
 ```bash
-python app/app.py
+python app.py
 ```
 
 ### 3. Start Streamlit UI
