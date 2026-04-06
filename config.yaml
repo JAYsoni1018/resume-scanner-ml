@@ -1,0 +1,21 @@
+app:
+  name: "Resume Role Classifier"
+  version: "1.0.0"
+  debug: false
+
+flask:
+  max_content_length_mb: 10
+
+model:
+  path: "models/model_v1.pkl"
+  vectorizer_max_features: 10000
+  test_size: 0.2
+  random_state: 42
+
+preprocessing:
+  min_word_length: 2
+  max_text_length: 50000
+
+logging:
+  level: "INFO"
+  file: "logs/app.log"
