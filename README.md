@@ -3,13 +3,15 @@
 A full-stack ML project that predicts job role categories from uploaded resumes with confidence scores.
 
 ## Features
-- Upload PDF or DOCX resumes
-- Predicts role: Android Developer, Data Scientist, Web Developer, etc. (25 categories)
+
+- Upload PDF or DOCX or Text resumes
+- Predicts role: Android Developer, Data Scientist, Web Developer, etc. (20 categories)
 - Shows confidence score (e.g., 93%)
 - Flask REST API backend
 - Streamlit UI frontend
 
 ## Project Structure
+
 ```
 project-name/
 ├── README.md
@@ -23,14 +25,14 @@ project-name/
 │   ├── data_loader.py
 │   ├── preprocess.py
 │   ├── features.py
+│   ├── model_trainer.py
 │   ├── train.py
 │   ├── evaluate.py
 │   ├── predict.py
 │   └── utils.py
-├── pipeline/
-│   └── pipeline.py
 ├── models/
 │   └── model_v1.pkl
+|    └── feature_artifacts.pkl
 ├── app/
 │   ├── app.py
 │   └── schema.py
@@ -42,21 +44,24 @@ project-name/
 ## Quick Start
 
 ### 1. Train the model
+
 ```bash
 python src/train.py
 ```
 
 ### 2. Start Flask API
+
 ```bash
 python app/app.py
 ```
 
 ### 3. Start Streamlit UI
+
 ```bash
 streamlit run streamlit_app.py
 ```
 
 ## API Endpoints
+
 - `POST /predict` — Upload resume file, returns predicted role + confidence
 - `GET /health` — Health check
-- `GET /categories` — List all supported role categories

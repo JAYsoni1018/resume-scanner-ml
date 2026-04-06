@@ -1,6 +1,6 @@
 
 
-from src.component.model_trainer import ModelTrainer
+from model_trainer import ModelTrainer
 from src.utils import setup_logging, get_project_root, load_config
 from src.evaluate import evaluate_model
 from src.features import fit_transform_features, save_artifacts
