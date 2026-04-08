@@ -20,6 +20,7 @@ project-name/
 ├── train.py
 ├── streamlit_app.py
 ├── Dockerfile
+├── .dockerignore
 ├── config.yaml
 ├── .env
 ├── .gitignore
@@ -45,21 +46,59 @@ project-name/
 └── notebooks/
 ```
 
+## Dataset
+
+    This project uses a combination of two publicly available resume datasets:
+
+    Dataset 1: https://www.kaggle.com/datasets/haidermaseeh/resume-dataset
+    Dataset 2: https://www.kaggle.com/datasets/arunsaini0906/resume-screening-dataset-for-nlp-and-ml
+
+
+
+
+    Both datasets were merged to create a unified dataset for training the model.
+
+    🔧 Data Preparation
+    From the combined dataset, only two relevant columns were extracted:
+    resume → raw resume text
+    category → job role label
+
+    Since the dataset contained a large number of categories, it was highly imbalanced and sparse.
+
+    🎯 Category Selection
+    To improve model performance and reduce noise:
+    Only the top 20 most frequent categories were selected
+    Remaining categories were excluded from training
+
+    This helped:
+
+    Reduce class imbalance
+    Improve model accuracy
+    Ensure sufficient data per category
+
 ## Quick Start
 
-### 1. Train the model
+### 1. Create virtual environment and install dependencies
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 2. Train the model
 
 ```bash
 python train.py
 ```
 
-### 2. Start Flask API
+### 3. Start Flask API
 
 ```bash
 python app.py
 ```
 
-### 3. Start Streamlit UI
+### 4. Start Streamlit UI
 
 ```bash
 streamlit run streamlit_app.py
