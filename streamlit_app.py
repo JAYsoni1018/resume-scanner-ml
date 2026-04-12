@@ -1,7 +1,3 @@
-"""
-Streamlit UI — Resume Role Classifier
-Run: streamlit run streamlit_app.py
-"""
 from dotenv import load_dotenv
 import streamlit as st
 import requests
@@ -130,9 +126,9 @@ with st.sidebar:
                 f"Model loaded: { '✅' if data.get('model_loaded') else '❌' }")
             st.write(f"Version: {data.get('version', 'N/A')}")
         else:
-            st.error("❌ API Error")
+            st.error(" API Error")
     except Exception:
-        st.error("❌ API Offline")
+        st.error(" API Offline")
         st.caption(f"Make sure Flask is running at {api_url}")
 
     st.subheader("Supported Formats")

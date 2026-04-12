@@ -7,7 +7,6 @@ from src.features import fit_transform_features, save_artifacts
 from src.preprocess import preprocess_dataframe
 from src.data_loader import load_dataset
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
 import os
 import sys
 import joblib
@@ -36,6 +35,8 @@ def train(csv_path: str = None):
     test_size = config["model"]["test_size"]
     random_state = config["model"]["random_state"]
 
+    # ── 3. Train/test split ───────────────────────────────────────────────────
+
     X_train_text, X_test_text, y_train_text, y_test_text = train_test_split(
         df["resume_cleaned"],
         df["category_cleaned"],
@@ -46,6 +47,8 @@ def train(csv_path: str = None):
 
     logger.info(f"Train: {len(X_train_text)}, Test: {len(X_test_text)}")
 
+    # # ── 4. Feature engineering ────────────────────────────────────────────────
+
     logger.info("Step 4: Extracting features...")
     X_train, y_train, vectorizer, label_encoder = fit_transform_features(
         X_train_text, y_train_text
@@ -54,29 +57,9 @@ def train(csv_path: str = None):
     X_test = vectorizer.transform(X_test_text)
     y_test = label_encoder.transform(y_test_text)
 
-    # # ── 3. Feature engineering ────────────────────────────────────────────────
-    # logger.info("Step 3: Extracting features...")
-    # X, y, vectorizer, label_encoder = fit_transform_features(
-    #     df["resume_cleaned"], df["category_cleaned"]
-    # )
-
-    # # ── 4. Train/test split ───────────────────────────────────────────────────
-    # test_size = config["model"]["test_size"]
-    # random_state = config["model"]["random_state"]
-    # X_train, X_test, y_train, y_test = train_test_split(
-    #     X, y, test_size=test_size, random_state=random_state, stratify=y
-    # )
-    # logger.info(f"Train: {X_train.shape[0]}, Test: {X_test.shape[0]}")
-
     # ── 5. Train model ────────────────────────────────────────────────────────
     logger.info("Step 5: Training Logistic Regression...")
-    # model = LogisticRegression(
-    #     max_iter=1000,
-    #     C=5.0,
-    #     solver="lbfgs",
-    #     random_state=random_state,
-    # )
-    # model.fit(X_train, y_train)
+
     model = ModelTrainer()
 
     best_model, best_score, report = model.initiate_model_trainer(

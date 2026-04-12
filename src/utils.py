@@ -42,25 +42,6 @@ def get_project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-# def save_artifacts(vectorizer, label_encoder, path: str = None):
-#     """Save vectorizer and label encoder as a tuple."""
-#     if path is None:
-#         path = os.path.join(get_project_root(), "models",
-#                             "feature_artifacts.pkl")
-#     os.makedirs(os.path.dirname(path), exist_ok=True)
-#     joblib.dump({"vectorizer": vectorizer,
-#                 "label_encoder": label_encoder}, path)
-#     setup_logging.logger.info(f"Feature artifacts saved to {path}")
-
-
-# def load_artifacts(path: str = None) -> dict:
-#     """Load vectorizer and label encoder."""
-#     if path is None:
-#         path = os.path.join(get_project_root(), "models",
-#                             "feature_artifacts.pkl")
-#     return joblib.load(path)
-
-
 def load_artifacts(path=None):
     if path is None:
         path = os.path.join(get_project_root(), "models",

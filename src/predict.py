@@ -1,9 +1,7 @@
 
 from src.preprocess import preprocess_text
-from src.utils import setup_logging, get_project_root, load_artifacts, load_model
+from src.utils import setup_logging, load_artifacts, load_model
 import numpy as np
-import joblib
-import re
 import io
 import os
 import sys
@@ -48,61 +46,6 @@ def extract_text(file_bytes, filename):
         raise ValueError(
             f"Unsupported file type: {ext}. Use .pdf, .docx, or .txt")
 
-
-# def _preprocess(text):
-
-#     text = text.lower()
-
-#     text = re.sub(r"http\S+|www\S+", " ", text)
-#     text = re.sub(r"[^a-z0-9\s]", " ", text)
-#     return re.sub(r"\s+", " ", text).strip()
-
-
-# def load_artifacts(path=None):
-#     if path is None:
-#         path = os.path.join(get_project_root(), "models", "feature_artifacts.pkl")
-#     if not os.path.exists(path):
-#         raise FileNotFoundError(f"Feature artifacts not found at {path}.")
-#     return joblib.load(path)
-
-
-# def predict_role(file_bytes, filename, model=None, artifacts=None, top_n=5):
-#     """
-#     Predict job role from resume bytes.
-
-#     Returns:
-#         {"predicted_role": str, "confidence": float, "top_predictions": [...]}
-#     """
-#     if model is None:
-#         model = load_model()
-#     if artifacts is None:
-#         artifacts = load_artifacts()
-
-#     label_encoder = artifacts["label_encoder"]
-
-#     raw_text = extract_text(file_bytes, filename)
-#     if not raw_text.strip():
-#         raise ValueError("Could not extract any text from the uploaded file.")
-
-#     cleaned = preprocess_text(raw_text)
-
-#     # model is a sklearn Pipeline (tfidf + clf)
-#     proba = model.predict_proba([cleaned])[0]
-#     top_indices = np.argsort(proba)[::-1][:top_n]
-
-#     top_predictions = [
-#         {
-#             "role": label_encoder.classes_[i],
-#             "confidence": round(float(proba[i]) * 100, 2),
-#         }
-#         for i in top_indices
-#     ]
-
-#     return {
-#         "predicted_role": top_predictions[0]["role"],
-#         "confidence": top_predictions[0]["confidence"],
-#         "top_predictions": top_predictions,
-#     }
 
 def predict_role(file_bytes, filename, model=None, artifacts=None, top_n=5):
 

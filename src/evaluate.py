@@ -3,7 +3,6 @@ from src.utils import setup_logging
 from sklearn.metrics import (
     classification_report,
     accuracy_score,
-    confusion_matrix,
 )
 import numpy as np
 import os
@@ -44,13 +43,3 @@ def evaluate_model(model, X_test, y_test, label_encoder) -> dict:
         "accuracy": acc,
         "report": report,
     }
-
-
-# def top_k_accuracy(model, X_test, y_test, k: int = 3) -> float:
-#     """Compute top-k accuracy."""
-#     proba = model.predict_proba(X_test)
-#     top_k = np.argsort(proba, axis=1)[:, -k:]
-#     correct = sum(y_test[i] in top_k[i] for i in range(len(y_test)))
-#     acc = correct / len(y_test)
-#     logger.info(f"Top-{k} Accuracy: {acc * 100:.2f}%")
-#     return acc

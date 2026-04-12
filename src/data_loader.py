@@ -32,13 +32,6 @@ def load_dataset(csv_path: str = None) -> pd.DataFrame:
     return df
 
 
-def get_category_counts(df: pd.DataFrame) -> pd.Series:
-    """Return category distribution."""
-    return df["category"].value_counts()
-
-
 if __name__ == "__main__":
     df = load_dataset()
     print(df.head())
-    print("\nCategory distribution:")
-    print(get_category_counts(df))
